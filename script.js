@@ -37,10 +37,8 @@ console.log(adventurer.companion.subCompanion.headOne);
 
 // Successfully added our Flea Frank.
 
-/**
- * 
+/** Now we have a method for “dice rolls,” a common way to handle outcomes in adventuring games. Test this method by calling adventurer.roll() a few times.
+What if we had many adventurers? As you can imagine, creating several of these objects manually would be time consuming, inefficient, and prone to errors. 
+Next, we will level up our approach using Classes. */
 
-You can access properties like adventurer.name or adventurer.inventory[0].
-You can access properties within the nested objects, for example, adventurer.companion.name or adventurer.companion.subCompanion.faceOne.
-You can call the roll method like this: adventurer.roll(). If you want to add a modifier, you can pass it as an argument, like adventurer.roll(2).
- */
+// adventurer.roll();  works successfully
