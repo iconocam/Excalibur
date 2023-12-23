@@ -4,8 +4,19 @@ const adventurer = {
     inventory: ["sword", "potion", "artifact"],
     companion: {
         name: "Leo",
-        type: "Cat"
-    }
+        type: "Cat",
+        subCompanion: {
+            name: "Frank",
+            type: "Flea",
+            faceOne: "sunglasses",
+            headOne: "smallHat"
+        }
+        
+    },
+    roll (mod = 0) {
+        const result = Math.floor(Math.random() * 20) + 1 + mod;
+        console.log(`${this.name} rolled a ${result}.`)
+        }
     }
 
     /**
@@ -21,3 +32,15 @@ const adventurer = {
     }
 
 console.log(adventurer.companion.type)
+
+console.log(adventurer.companion.subCompanion.headOne);
+
+// Successfully added our Flea Frank.
+
+/**
+ * 
+
+You can access properties like adventurer.name or adventurer.inventory[0].
+You can access properties within the nested objects, for example, adventurer.companion.name or adventurer.companion.subCompanion.faceOne.
+You can call the roll method like this: adventurer.roll(). If you want to add a modifier, you can pass it as an argument, like adventurer.roll(2).
+ */
