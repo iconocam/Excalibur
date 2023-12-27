@@ -31,9 +31,9 @@ const adventurer = {
         }
     }
 
-console.log(adventurer.companion.type)
+// console.log(adventurer.companion.type)
 
-console.log(adventurer.companion.subCompanion.headOne);
+// console.log(adventurer.companion.subCompanion.headOne);
 
 // Successfully added our Flea Frank.
 
@@ -62,6 +62,43 @@ roll (mod = 0) {
     console.log(`${this.name} rolled a ${result}.`)
     }
 }
+// const robin = new Character("Robin");
+// robin.inventory = ["sword", "potion", "artifact"];
+// robin.companion = new Character("Leo");
+// robin.companion.type = "Cat";
+// robin.companion.subCompanion = new Character("Frank");
+// robin.companion.subCompanion.type = "Flea";
+// robin.companion.subCompanion.inventory = ["small hat", "sunglasses"];
+
+// robin.companion.roll(5) 
+
+// Part 3: Class Features 
+
+/** 
+ * Part 3: Class Features
+When extending a class, the “child” class inherits all properties of its parents. This means that we do not need to account for the name, health, inventory, or roll method of Character children classes.
+Let’s begin by creating an Adventurer class. What attributes might be specific to an adventure, but that not all characters have? Take a look at our example below, and expand upon it with your own properties and methods.
+ */
+
+class Adventurer extends Character {
+    constructor (name, role) {
+    super(name);
+      // Adventurers have specialized roles.
+    this.role = role;
+      // Every adventurer starts with a bed and 50 gold coins.
+    this.inventory.push("bedroll", "50 gold coins");
+    }
+    // Adventurers have the ability to scout ahead of them.
+    scout () {
+    console.log(`${this.name} is scouting ahead...`);
+    super.roll();
+
+    }
+    attack() {
+        console.log(`${this.name} is attacking!`);
+    }
+}
+
 const robin = new Character("Robin");
 robin.inventory = ["sword", "potion", "artifact"];
 robin.companion = new Character("Leo");
@@ -70,4 +107,36 @@ robin.companion.subCompanion = new Character("Frank");
 robin.companion.subCompanion.type = "Flea";
 robin.companion.subCompanion.inventory = ["small hat", "sunglasses"];
 
-// robin.companion.roll(5) 
+const adventurerRobin = new Adventurer("Robin", "Swordsman")
+
+const adventurerCass = new Adventurer("Cass", "poisonArt")
+// adventurerCass.scout()
+
+adventurerCassCompanion = new Character('Ekans')
+// adventurerCass.companion.type = "baby Snake"
+adventurerCass.inventory = ['Poison Bottle', 'Oblivion Gaze']
+console.log(adventurerCass.inventory)
+adventurerCass.attack()
+
+class Companion extends Character {
+    constructor (name, role) {
+    super(name);
+    
+    this.role = role;
+    
+    this.inventory.push("Compass");
+    }
+
+    proxy () {
+    console.log(`${this.name} is scanning the current proximity..`);
+    super.roll();
+
+    }
+    compass() {
+        console.log(`${this.name} is locating direction North.`);
+    }
+}
+const Frank = new Companion('Frank', 'Flea')
+const Ekans = new Companion('Ekans', 'baby Snake')
+
+Ekans.compass();
