@@ -52,6 +52,7 @@ Start with a Character class, which will define generic character entities. Robi
 
 // Here is what the basic Character class looks like so far, including a constructor function that allows us to create new characters with whatever name we would like: //
 class Character {
+    static MAX_HEALTH = 100;
 constructor (name) {
     this.name = name;
     this.health = 100;
@@ -61,6 +62,7 @@ roll (mod = 0) {
     const result = Math.floor(Math.random() * 20) + 1 + mod;
     console.log(`${this.name} rolled a ${result}.`)
     }
+    
 }
 // const robin = new Character("Robin");
 // robin.inventory = ["sword", "potion", "artifact"];
@@ -79,8 +81,9 @@ roll (mod = 0) {
 When extending a class, the “child” class inherits all properties of its parents. This means that we do not need to account for the name, health, inventory, or roll method of Character children classes.
 Let’s begin by creating an Adventurer class. What attributes might be specific to an adventure, but that not all characters have? Take a look at our example below, and expand upon it with your own properties and methods.
  */
-
+// Part 4: Static Roles 
 class Adventurer extends Character {
+    static ROLES = ['Fighter', 'Healer', 'Wizard']
     constructor (name, role) {
     super(name);
       // Adventurers have specialized roles.
@@ -107,9 +110,9 @@ robin.companion.subCompanion = new Character("Frank");
 robin.companion.subCompanion.type = "Flea";
 robin.companion.subCompanion.inventory = ["small hat", "sunglasses"];
 
-const adventurerRobin = new Adventurer("Robin", "Swordsman")
+const adventurerRobin = new Adventurer("Robin", 'Fighter')
 
-const adventurerCass = new Adventurer("Cass", "poisonArt")
+const adventurerCass = new Adventurer("Cass", "Wizard")
 // adventurerCass.scout()
 
 adventurerCassCompanion = new Character('Ekans')
@@ -129,7 +132,7 @@ class Companion extends Character {
 
     proxy () {
     console.log(`${this.name} is scanning the current proximity..`);
-    super.roll();
+    // super.roll();
 
     }
     compass() {
@@ -139,4 +142,6 @@ class Companion extends Character {
 const Frank = new Companion('Frank', 'Flea')
 const Ekans = new Companion('Ekans', 'baby Snake')
 
-Ekans.compass();
+Ekans.proxy();
+
+console.log(adventurerCass)
