@@ -81,7 +81,7 @@ roll (mod = 0) {
 When extending a class, the “child” class inherits all properties of its parents. This means that we do not need to account for the name, health, inventory, or roll method of Character children classes.
 Let’s begin by creating an Adventurer class. What attributes might be specific to an adventure, but that not all characters have? Take a look at our example below, and expand upon it with your own properties and methods.
  */
-// Part 4: Static Roles 
+// Part 4 right below: Static Roles 
 class Adventurer extends Character {
     static ROLES = ['Fighter', 'Healer', 'Wizard']
     constructor (name, role) {
@@ -100,7 +100,31 @@ class Adventurer extends Character {
     attack() {
         console.log(`${this.name} is attacking!`);
     }
-}
+    duel(enemy) {
+        console.log(`${this.name} wants to duke it out with ${enemy.name}!`)
+        // while (this.health > 50 && enemy.health > 50) {
+        //     const thisRoll = this.roll();
+        //     const enemyRoll = enemy.roll();
+        //     if (thisRoll > enemyRoll) {
+        //         enemy.health -= 25;
+        //         console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${enemy.name} loses 25 health.`) } else if (thisRoll < enemyRoll) {
+        //             this.health -= 25;
+        //             console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${this.name} loses 25 health.`) } else {
+        //                 console.log(`${this.name} and ${enemy.name} have rolled the same, clash!`);
+                        
+        //             }
+        //         }
+        // // i commented this out because when i ran the duel function it used A LOT of memory hoi! i think something is wrong
+                // checks whether the health of the current adventurer (this.health) is greater than 50. If it is, the current adventurer (this) is assigned to the variable winner; otherwise, the enemy adventurer (enemy) is assigned to winner.
+                const winner = this.health > 50 ? this : enemy;
+                const loser = this.health > 50 ? enemy : this;
+                console.log(`${winner.name} has overpowered ${loser.name} with ${this.health} remaining!`)
+            }
+        }
+
+    
+    
+
 
 const robin = new Character("Robin");
 robin.inventory = ["sword", "potion", "artifact"];
@@ -145,3 +169,27 @@ const Ekans = new Companion('Ekans', 'baby Snake')
 Ekans.proxy();
 
 console.log(adventurerCass)
+
+// Part 5: Gather Your Party
+
+
+class AdventurerFactory {  
+    constructor (role) {
+    this.role = role;
+    this.adventurers = [];
+    }
+    generate (name) {
+    const newAdventurer = new Adventurer(name, this.role);
+    this.adventurers.push(newAdventurer);
+    }
+    findByIndex (index) {
+    return this.adventurers[index];
+    }
+    findByName (name) {
+    return this.adventurers.find((a) => a.name === name);
+    }
+}
+
+const healers = new AdventurerFactory("Healer");
+const robin = healers.generate("Robin");
+adventurerCass.duel(adventurerRobin);
