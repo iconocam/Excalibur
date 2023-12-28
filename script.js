@@ -102,19 +102,19 @@ class Adventurer extends Character {
     }
     duel(enemy) {
         console.log(`${this.name} wants to duke it out with ${enemy.name}!`)
-        // while (this.health > 50 && enemy.health > 50) {
-        //     const thisRoll = this.roll();
-        //     const enemyRoll = enemy.roll();
-        //     if (thisRoll > enemyRoll) {
-        //         enemy.health -= 25;
-        //         console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${enemy.name} loses 25 health.`) } else if (thisRoll < enemyRoll) {
-        //             this.health -= 25;
-        //             console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${this.name} loses 25 health.`) } else {
-        //                 console.log(`${this.name} and ${enemy.name} have rolled the same, clash!`);
+        while (this.health > 50 && enemy.health > 50) {
+            const thisRoll = this.roll();
+            const enemyRoll = enemy.roll();
+            if (thisRoll > enemyRoll) {
+                enemy.health -= 50;
+                console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${enemy.name} loses 50 health.`) } else if (thisRoll < enemyRoll) {
+                    this.health -= 50;
+                    console.log(`${this.name} rolls ${thisRoll}, ${enemy.name} rolls ${enemyRoll}, ${this.name} loses 50 health.`) } else {
+                        console.log(`${this.name} and ${enemy.name} have rolled the same, clash!`);
                         
-        //             }
-        //         }
-        // // i commented this out because when i ran the duel function it used A LOT of memory hoi! i think something is wrong
+                    }
+                }
+        // // i commented this out because when i ran the duel function it used A LOT of memory hoi! i think something is wrong, it's supposed to stop when someone hits 50 or lower HP and i changed it so that one attack(or roll die) will result in a loss of 50 HP so curious as to why it ran so powerfully 
                 // checks whether the health of the current adventurer (this.health) is greater than 50. If it is, the current adventurer (this) is assigned to the variable winner; otherwise, the enemy adventurer (enemy) is assigned to winner.
                 const winner = this.health > 50 ? this : enemy;
                 const loser = this.health > 50 ? enemy : this;
